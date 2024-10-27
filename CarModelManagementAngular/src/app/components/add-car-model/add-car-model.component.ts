@@ -32,24 +32,42 @@ export class AddCarModelComponent implements OnInit {
   onFileChange(event: any) {
     const files: FileList = event.target.files;
     this.carModel.images = []; 
+    const maxFileSize = 5 * 1024 * 1024; // 5 MB in bytes
+
     if (files.length > 0) {
-      Array.from(files).forEach((file: File) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const base64String = reader.result as string;
-          this.carModel.images.push({
-            imageData: base64String.split(',')[1], 
-            imageName: file.name,
-            imageType: file.type
-          });
-        };
-        reader.onerror = (error) => {
-          console.error('Error reading file:', error);
-        };
-        reader.readAsDataURL(file); // Read the file as a Base64 string
-      });
+        const validFiles: File[] = []; // Store valid files to display
+
+        Array.from(files).forEach((file: File) => {
+            // Check if the file size is greater than 5 MB
+            if (file.size > maxFileSize) {
+                alert(`File "${file.name}" is larger than 5 MB and will not be uploaded.`);
+            } else {
+                validFiles.push(file); // Add valid files to the array
+
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64String = reader.result as string;
+                    this.carModel.images.push({
+                        imageData: base64String.split(',')[1], 
+                        imageName: file.name,
+                        imageType: file.type
+                    });
+                };
+                reader.onerror = (error) => {
+                    console.error('Error reading file:', error);
+                };
+                reader.readAsDataURL(file); // Read the file as a Base64 string
+            }
+        });
+
+        // If there are invalid files, reset the file input
+        if (validFiles.length < files.length) {
+            event.target.value = ''; // Clear the file input
+        }
     }
-  }
+}
+
+
   onSubmit() {
     this.carModelService.addCarModel(this.carModel)
     .subscribe({
