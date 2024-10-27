@@ -1,0 +1,103 @@
+[
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.CarModelController",
+    "Method": "AddCarModel",
+    "RelativePath": "api/CarModel/AddCarModelWithImages",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addDto",
+        "Type": "CarModelManagementApi.Dtos.AddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.CarModelController",
+    "Method": "DeleteCarModel",
+    "RelativePath": "api/CarModel/DeleteCarModel/{carModelId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "carModelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.CarModelController",
+    "Method": "GetAllCarModels",
+    "RelativePath": "api/CarModel/GetAllCarModels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.CarModelController",
+    "Method": "GetCarModelById",
+    "RelativePath": "api/CarModel/GetCarModelById/{carModelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "carModelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.CarModelController",
+    "Method": "UpdateCarModel",
+    "RelativePath": "api/CarModel/UpdateCarModel",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CarModelManagementApi.Dtos.CarModelDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarModelManagementApi.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[CarModelManagementApi.WeatherForecast, CarModelManagementApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

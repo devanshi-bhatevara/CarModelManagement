@@ -1,0 +1,47 @@
+<div class="input-group mb-3">
+  <input 
+    type="text" 
+    placeholder="Search by Model Name or Model Code" 
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+    class="form-control"
+  />
+  <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
+</div>
+
+<div *ngIf="carModels != null">
+  <div *ngIf="carModels.length === 0" class="text-center my-3">
+    <p>No records found.</p>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let car of carModels" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.brand }} - {{ car.modelName }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ car.modelCode }}</h6>
+          <p class="card-text">{{ car.description }}</p>
+          <p class="card-text"><strong>Class:</strong> {{ car.class }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ car.price | currency }}</p>
+          <p class="card-text"><strong>Date of Manufacturing:</strong> {{ car.dateOfManufacturing | date }}</p>
+
+          <div *ngIf="car.images.length > 0">
+            <h6>Images:</h6>
+            <div class="image-gallery mb-2">
+              <img
+                *ngFor="let image of car.images"
+                [src]="'data:' + image.imageType + ';base64,' + image.imageData"
+                [alt]="image.imageName"
+                class="img-fluid car-image"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-primary" (click)="onUpdate(car.carModelId)">Update</button>
+          <button class="btn btn-danger" (click)="deleteCarModel(car.carModelId)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
